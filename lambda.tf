@@ -1,10 +1,10 @@
 
 
 locals {
-   lambda_code_relative_path = "${path.module}#The relative or absolute path to the lambda code"
+   lambda_code_relative_path = "${path.module}/The-relative-or-absolute-path-to-the-lambda-code"
   files_to_include = [
     # the files to include for debugging this lambda
-    # The list of siles have to include only the implementation code
+    # The list of files have to include only the implementation code
     # not the setup.py, and so on
   ]
 }
@@ -28,7 +28,7 @@ resource "aws_lambda_function" "lambda_function" {
 
   environment {
     variables = {
-      ENVIRONMENT         = "dev"
+      ENVIRONMENT         = "testing"
       SECRET_ENV_VAR_NAME = aws_secretsmanager_secret.oracle_secret.name
     }
   }
