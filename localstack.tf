@@ -1,17 +1,17 @@
-resource "docker_network" "localstack-network" {
-  name            = "localstack-lan"
+resource "docker_network" "localstack_network" {
+  name            = "localstack-network"
   attachable      = true
   check_duplicate = "true"
   driver          = "bridge"
 }
 
-resource "docker_volume" "localstack-volume" {
+resource "docker_volume" "localstack_volume" {
   name   = "localstack-vol"
   driver = "local"
 }
 
-resource "docker_container" "localstack" {
-  name  = "ws-testing-localstack"
+resource "docker_container" "localstack_container" {
+  name  = "testing-localstack-environment"
   image = "localstack/localstack:stable"
 
   env = [
@@ -25,11 +25,9 @@ resource "docker_container" "localstack" {
     "LAMBDA_DOCKER_FLAGS=-v /var/run/docker.sock:/var/run/docker.sock -p 19891:19891",
     "ENVIRONMENT=dev",
     "DEBUG=1",
-    "ENVIRONMENT=dev",
-    "SECRET_ENV_VAR_NAME=localstack_oracle_dev_credentials"
   ]
 
-  network_mode = docker_network.localstack-network.name
+  network_mode = docker_network.localstack_network.name
 
   remove_volumes = true
 
@@ -56,15 +54,15 @@ resource "docker_container" "localstack" {
   # Localstack persistence volume mount
   volumes {
     container_path = "/var/lib/localstack"
-    volume_name    = docker_volume.localstack-volume.name
+    volume_name    = docker_volume.localstack_volume.name
   }
 
   depends_on = [
-    docker_network.localstack-network,
-    docker_volume.localstack-volume
+    docker_network.localstack_network,
+    docker_volume.localstack_volume
   ]
 }
 
 output "localstack" {
-  value = docker_container.localstack.name
+  value = docker_container.localstack_container.name
 }
