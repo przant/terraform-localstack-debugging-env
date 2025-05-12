@@ -1,5 +1,5 @@
 locals {
-   lambda_code_relative_path = "${path.module}/relative-or-absolute-path-to-the-source-code"
+  lambda_code_relative_path = "${path.module}/relative-or-absolute-path-to-the-source-code"
   files_to_include = [
     # the files to include for debugging this lambda
     # The list of files have to include only the implementation code
