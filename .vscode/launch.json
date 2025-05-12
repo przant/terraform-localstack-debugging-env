@@ -8,10 +8,10 @@
             "program": "${file}",
             "args": [],
             "console": "integratedTerminal",
-            "justMyCode": true,
+            "justMyCode": false,
             "env": {
                 "AWS_ENDPOINT_URL": "http://localhost:4566",
-                "AWS_ACCESS_KEY_ID": "test",
+                "AWS_ACCESS_KEY": "test",
                 "AWS_SECRET_ACCESSS_KEY": "test",
                 "AWS_DEAFULT_REGION": "us-west-2"
             }
