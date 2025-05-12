@@ -1,15 +1,15 @@
-resource "aws_secretsmanager_secret" "oracle_secret" {
+resource "aws_secretsmanager_secret" "database_secret" {
   name = "localstack_test_credentials"
 
   tags = {
-    Environment = "dthe env variable if necessary"
+    Environment = "testing"
   }
 
   depends_on = [docker_container.localstack]
 }
 
-resource "aws_secretsmanager_secret_version" "oracle_secret_version" {
-  secret_id = aws_secretsmanager_secret.oracle_secret.id
+resource "aws_secretsmanager_secret_version" "database_credentials_secret_version" {
+  secret_id = aws_secretsmanager_secret.database_secret.id
 
   secret_string = jsonencode({
     host     = "the host to use"
